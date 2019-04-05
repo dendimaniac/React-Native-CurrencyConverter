@@ -1,16 +1,16 @@
 import React from "react";
 import EStyleSheets from "react-native-extended-stylesheet";
+import { Provider } from "react-redux";
 
-import Themes from "./screens/Themes";
-import Options from "./screens/Options";
-import CurrencyList from "./screens/CurrencyList";
-import Home from "./screens/Home";
+import Navigator from "./config/routes";
+import { AlertProvider } from "./components/Alert";
+import store from "./config/store";
 
 EStyleSheets.build({
   $primaryBlue: "#4F6D7A",
-  $primaryOrange: '#D57A66',
-  $primaryGreen: '#00BD9D',
-  $primaryPurple: '#9E768F',
+  $primaryOrange: "#D57A66",
+  $primaryGreen: "#00BD9D",
+  $primaryPurple: "#9E768F",
 
   $white: "#FFFFFF",
   $border: "#E2E2E2",
@@ -19,4 +19,10 @@ EStyleSheets.build({
   $darkText: "#343434"
 });
 
-export default () => <Themes />;
+export default () => (
+  <Provider store={store}>
+    <AlertProvider>
+      <Navigator onNavigationStateChange={null} />
+    </AlertProvider>
+  </Provider>
+);
